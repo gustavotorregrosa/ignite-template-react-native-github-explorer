@@ -30,7 +30,7 @@ interface RepositoryParams {
   repositoryId: number;
 }
 
-export function Repository() {
+export function Repository({}) {
   const { params } = useRoute();
   const { repositoryId } = params as RepositoryParams;
   const { findRepositoryById } = useRepositories();
@@ -38,6 +38,7 @@ export function Repository() {
 
   function handleIssueNavigation(issueUrl: string) {
     // TODO - use Linking to open issueUrl in a browser
+    Linking.openURL(issueUrl)
   }
 
   return (
@@ -50,6 +51,7 @@ export function Repository() {
             <TitleAnimation>
               {
                 // TODO - full name of the repository
+                repository.full_name
               }
             </TitleAnimation>
 
@@ -94,6 +96,7 @@ export function Repository() {
                 subTitle: issue.user.login,
               }}
               // TODO - onPress prop calling 
+              onPress={}
             />
           )}
         />

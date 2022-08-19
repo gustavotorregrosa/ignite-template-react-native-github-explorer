@@ -42,6 +42,11 @@ export function Dashboard() {
      * - call addRepository function sending inputText value;
      * - clean inputText value.
      */
+
+    if(inputText){
+      addRepository(inputText)
+      setInputText('')
+    }
   }
 
   function handleRepositoryPageNavigation(id: number) {
@@ -53,6 +58,10 @@ export function Dashboard() {
      *  repositoryId: id of the repository
      * })
      */
+
+      navigate('Repository', {
+        repositoryId: id
+      })
   }
 
   return (
@@ -66,6 +75,9 @@ export function Dashboard() {
               ref={inputRef}
               placeholder="Digite aqui 'usuário/repositório'"
               value={inputText}
+
+              onChangeText={setInputText}
+
               /**
                * TODO - update inputText value when input text value 
                * changes:
@@ -85,6 +97,8 @@ export function Dashboard() {
                * empty (use disabled prop to this):
                * disabled={CONDITION HERE}
                */
+
+              disabled={!inputText}
             >
               <Icon name="search" size={20} />
             </InputButton>
